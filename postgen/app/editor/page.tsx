@@ -189,13 +189,13 @@ function EditorCanvas() {
   }
 
   return (
-    <div className="min-h-screen p-8" style={{ background: '#0a0907' }}>
+    <div className="min-h-screen p-8" style={{ background: '#fef9f0' }}>
       <div className="mb-8">
         <span className="label-mono block mb-2">Editor Visual</span>
-        <h1 className="font-serif text-4xl" style={{ color: '#f0e8d8' }}>
-          Diseñá tu <em>post</em>
+        <h1 className="text-4xl font-bold mb-1" style={{ fontFamily: 'Fraunces, serif', color: '#2d1f0e' }}>
+          Diseñá tu <em style={{ color: '#e8732a' }}>post</em>
         </h1>
-        <p className="text-sm mt-1" style={{ color: '#665e52' }}>
+        <p className="text-sm mt-1" style={{ color: '#7a5c3a' }}>
           Hacé clic en cualquier elemento para editarlo. Arrastrá para reposicionar.
         </p>
       </div>
@@ -205,56 +205,48 @@ function EditorCanvas() {
         <div>
           {/* Toolbar */}
           <div
-            className="flex items-center gap-2 mb-4 px-4 py-2.5 rounded-lg border"
-            style={{ background: '#1a1814', border: '1px solid #2a2520' }}
+            className="flex flex-wrap items-center gap-2 mb-4 px-4 py-2.5 rounded-xl border"
+            style={{ background: '#fffdf7', border: '1.5px solid #e8d9c4' }}
           >
             <button onClick={addTextLayer} className="btn-ghost flex items-center gap-1.5 text-xs">
               <Type size={13} /> Añadir texto
             </button>
-
             <label className="btn-ghost flex items-center gap-1.5 text-xs cursor-pointer">
               <ImageIcon size={13} /> Imagen de fondo
               <input type="file" accept="image/*" className="hidden" onChange={uploadImage} />
             </label>
-
             {selectedObject && (
-              <button onClick={deleteSelected} className="btn-ghost flex items-center gap-1.5 text-xs" style={{ color: '#a09282' }}>
+              <button onClick={deleteSelected} className="btn-ghost flex items-center gap-1.5 text-xs" style={{ color: '#e8732a' }}>
                 <Trash2 size={13} /> Eliminar
               </button>
             )}
-
             <div className="ml-auto flex items-center gap-2">
-              <label className="label-mono text-[9px]" style={{ color: '#443c32' }}>Fondo</label>
-              <input
-                type="color"
-                value={bgColor}
-                onChange={e => changeBg(e.target.value)}
-                className="w-7 h-7 rounded cursor-pointer border-0"
-                style={{ background: 'none' }}
-              />
+              <label className="label-mono text-[9px]">Fondo</label>
+              <input type="color" value={bgColor} onChange={e => changeBg(e.target.value)}
+                className="w-7 h-7 rounded-lg cursor-pointer border-0" />
               <button onClick={exportImage} className="btn-gold flex items-center gap-1.5 text-xs">
                 <Download size={13} /> Exportar PNG
               </button>
             </div>
           </div>
 
-          {/* Canvas wrapper - scaled down for display */}
+          {/* Canvas wrapper */}
           <div
             className="rounded-xl overflow-hidden border"
             style={{
-              border: '1px solid #2a2520',
+              border: '1.5px solid #e8d9c4',
               transform: 'scale(0.45)',
               transformOrigin: 'top left',
               width: '1080px',
               height: '1080px',
-              marginBottom: `-${1080 * 0.55}px`, // compensate for scale
+              marginBottom: `-${1080 * 0.55}px`,
             }}
           >
             <canvas ref={canvasRef} />
           </div>
 
           <div className="mt-2">
-            <p className="label-mono text-[9px]" style={{ color: '#443c32' }}>
+            <p className="label-mono text-[9px]">
               Vista previa a escala — la exportación es 1080×1080px
             </p>
           </div>
@@ -265,7 +257,7 @@ function EditorCanvas() {
           <span className="label-mono block">Propiedades del elemento</span>
 
           {!selectedObject ? (
-            <p className="text-xs" style={{ color: '#443c32' }}>
+            <p className="text-xs" style={{ color: '#b8956a' }}>
               Hacé clic en un elemento del canvas para editar sus propiedades.
             </p>
           ) : selectedObject.type === 'textbox' ? (
@@ -276,7 +268,7 @@ function EditorCanvas() {
                 <input
                   type="range" min={12} max={120} value={fontSize}
                   onChange={e => applyFontSize(Number(e.target.value))}
-                  className="w-full accent-amber-400"
+                  className="w-full accent-orange-500"
                 />
               </div>
 
@@ -284,7 +276,7 @@ function EditorCanvas() {
               <div>
                 <label className="label-mono block mb-2">Color del texto</label>
                 <div className="flex gap-2 flex-wrap">
-                  {['#f0e8d8', '#c9b89a', '#ffffff', '#665e52', '#000000', '#ff6b6b'].map(c => (
+                  {['#2d1f0e', '#e8732a', '#f5c842', '#4a7c3f', '#ffffff', '#000000'].map(c => (
                     <button
                       key={c}
                       onClick={() => applyColor(c)}
@@ -304,16 +296,10 @@ function EditorCanvas() {
               <div>
                 <label className="label-mono block mb-2">Estilo</label>
                 <div className="flex gap-2">
-                  <button
-                    onClick={applyBold}
-                    className="btn-ghost text-xs font-bold px-3 py-2"
-                    style={{ color: fontWeight === 'bold' ? '#c9b89a' : undefined }}
-                  >B</button>
-                  <button
-                    onClick={applyItalic}
-                    className="btn-ghost text-xs italic px-3 py-2"
-                    style={{ color: fontStyle === 'italic' ? '#c9b89a' : undefined }}
-                  >I</button>
+                  <button onClick={applyBold} className="btn-ghost text-xs font-bold px-3 py-2"
+                    style={{ color: fontWeight === 'bold' ? '#e8732a' : undefined, borderColor: fontWeight === 'bold' ? '#e8732a' : undefined }}>B</button>
+                  <button onClick={applyItalic} className="btn-ghost text-xs italic px-3 py-2"
+                    style={{ color: fontStyle === 'italic' ? '#e8732a' : undefined, borderColor: fontStyle === 'italic' ? '#e8732a' : undefined }}>I</button>
                 </div>
               </div>
 
@@ -324,12 +310,8 @@ function EditorCanvas() {
                   {(['left', 'center', 'right'] as const).map(a => {
                     const Icon = a === 'left' ? AlignLeft : a === 'center' ? AlignCenter : AlignRight
                     return (
-                      <button
-                        key={a}
-                        onClick={() => applyAlign(a)}
-                        className="btn-ghost px-3 py-2"
-                        style={{ color: align === a ? '#c9b89a' : undefined }}
-                      >
+                      <button key={a} onClick={() => applyAlign(a)} className="btn-ghost px-3 py-2"
+                        style={{ color: align === a ? '#e8732a' : undefined, borderColor: align === a ? '#e8732a' : undefined }}>
                         <Icon size={14} />
                       </button>
                     )
@@ -338,14 +320,14 @@ function EditorCanvas() {
               </div>
             </>
           ) : (
-            <p className="text-xs" style={{ color: '#665e52' }}>
+            <p className="text-xs" style={{ color: '#b8956a' }}>
               Elemento seleccionado. Podés moverlo o eliminarlo con el botón de la barra.
             </p>
           )}
 
-          <div className="pt-4 border-t space-y-2" style={{ borderColor: '#2a2520' }}>
+          <div className="pt-4 border-t space-y-2" style={{ borderColor: '#e8d9c4' }}>
             <p className="label-mono">Tips</p>
-            <p className="text-xs leading-relaxed" style={{ color: '#443c32' }}>
+            <p className="text-xs leading-relaxed" style={{ color: '#b8956a' }}>
               • Doble clic en un texto para editar su contenido<br/>
               • Arrastrá las esquinas para redimensionar<br/>
               • Usá Ctrl+Z para deshacer<br/>
@@ -361,8 +343,8 @@ function EditorCanvas() {
 export default function EditorPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center" style={{ background: '#0a0907' }}>
-        <p className="label-mono" style={{ color: '#443c32' }}>Cargando editor...</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#fef9f0' }}>
+        <p className="label-mono">Cargando editor...</p>
       </div>
     }>
       <EditorCanvas />
