@@ -49,7 +49,7 @@ export default function CalendarPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-[1fr_260px] gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-6 items-start">
         {/* Calendar */}
         <div className="card-dark">
           {/* Month nav */}

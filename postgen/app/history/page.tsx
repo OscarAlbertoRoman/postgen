@@ -66,7 +66,7 @@ export default function HistoryPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-[300px_1fr] gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 items-start">
         {/* List */}
         <div className="space-y-2">
           {posts.map(post => (

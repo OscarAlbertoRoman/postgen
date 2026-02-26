@@ -108,7 +108,7 @@ export default function GeneratorPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-[420px_1fr] gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-8 items-start">
         {/* LEFT PANEL — Form */}
         <div className="card-dark space-y-6">
           {/* Topic */}
