@@ -96,14 +96,14 @@ export default function GeneratorPage() {
   }
 
   return (
-    <div className="min-h-screen p-8" style={{ background: '#0a0907' }}>
+    <div className="min-h-screen p-8" style={{ background: '#fef9f0' }}>
       {/* Header */}
       <div className="mb-10">
         <span className="label-mono block mb-2">Nueva Pieza</span>
-        <h1 className="font-serif text-4xl mb-2" style={{ color: '#f0e8d8' }}>
-          Creá contenido <em>brillante</em>
+        <h1 className="text-4xl mb-2 font-bold" style={{ fontFamily: 'Fraunces, serif', color: '#2d1f0e' }}>
+          Creá contenido <em style={{ color: '#e8732a' }}>brillante</em>
         </h1>
-        <p className="text-sm" style={{ color: '#665e52' }}>
+        <p className="text-sm" style={{ color: '#7a5c3a' }}>
           Ingresá tu tema y la IA generará posts optimizados para cada red.
         </p>
       </div>
@@ -143,11 +143,11 @@ export default function GeneratorPage() {
                 <button
                   key={t}
                   onClick={() => setTone(t)}
-                  className="px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150"
                   style={{
-                    background: tone === t ? '#c9b89a' : '#2a2520',
-                    color: tone === t ? '#0f0e0d' : '#665e52',
-                    border: `1px solid ${tone === t ? '#c9b89a' : '#2a2520'}`,
+                    background: tone === t ? '#e8732a' : '#fef9f0',
+                    color: tone === t ? '#fff' : '#7a5c3a',
+                    border: `1.5px solid ${tone === t ? '#e8732a' : '#e8d9c4'}`,
                   }}
                 >
                   {t}
@@ -164,17 +164,17 @@ export default function GeneratorPage() {
                 <button
                   key={n.id}
                   onClick={() => toggleNetwork(n.id)}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150"
+                  className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150"
                   style={{
-                    background: networks.includes(n.id) ? '#2a2520' : 'transparent',
-                    border: `1px solid ${networks.includes(n.id) ? '#443c32' : '#2a2520'}`,
-                    color: networks.includes(n.id) ? '#c9b89a' : '#443c32',
+                    background: networks.includes(n.id) ? 'rgba(232,115,42,0.08)' : 'transparent',
+                    border: `1.5px solid ${networks.includes(n.id) ? '#e8732a' : '#e8d9c4'}`,
+                    color: networks.includes(n.id) ? '#e8732a' : '#7a5c3a',
                   }}
                 >
                   <span>{n.emoji}</span>
                   {n.label}
                   {networks.includes(n.id) && (
-                    <span className="ml-auto" style={{ color: '#c9b89a' }}>✓</span>
+                    <span className="ml-auto" style={{ color: '#e8732a' }}>✓</span>
                   )}
                 </button>
               ))}
@@ -182,17 +182,17 @@ export default function GeneratorPage() {
           </div>
 
           {/* Options */}
-          <div className="space-y-2 pt-2 border-t" style={{ borderColor: '#2a2520' }}>
+          <div className="space-y-2 pt-2 border-t" style={{ borderColor: '#e8d9c4' }}>
             {[
               { key: 'hashtags', label: 'Incluir hashtags', value: hashtags, set: setHashtags },
               { key: 'cta',      label: 'Llamado a la acción', value: cta, set: setCta },
             ].map(({ key, label, value, set }) => (
               <div key={key} className="flex items-center justify-between py-1">
-                <span className="text-xs" style={{ color: '#665e52' }}>{label}</span>
+                <span className="text-xs font-medium" style={{ color: '#7a5c3a' }}>{label}</span>
                 <button
                   onClick={() => set(!value)}
                   className="w-10 h-5 rounded-full relative transition-colors duration-200"
-                  style={{ background: value ? '#c9b89a' : '#2a2520' }}
+                  style={{ background: value ? '#e8732a' : '#e8d9c4' }}
                 >
                   <span
                     className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-200"
@@ -216,7 +216,7 @@ export default function GeneratorPage() {
           </button>
 
           {error && (
-            <p className="text-xs text-center" style={{ color: '#c9b89a', opacity: 0.7 }}>{error}</p>
+            <p className="text-xs text-center" style={{ color: '#e8732a', opacity: 0.8 }}>{error}</p>
           )}
         </div>
 
@@ -224,11 +224,11 @@ export default function GeneratorPage() {
         <div>
           {!results && !loading && (
             <div
-              className="h-64 flex flex-col items-center justify-center rounded-xl border"
-              style={{ border: '1px dashed #2a2520' }}
+              className="h-64 flex flex-col items-center justify-center rounded-2xl border-2 border-dashed"
+              style={{ borderColor: '#e8d9c4', background: '#fffdf7' }}
             >
-              <Sparkles size={32} style={{ color: '#443c32' }} className="mb-3" />
-              <p className="label-mono" style={{ color: '#443c32' }}>
+              <Sparkles size={32} style={{ color: '#f5c842' }} className="mb-3" />
+              <p className="label-mono" style={{ color: '#b8956a' }}>
                 Los posts generados aparecerán aquí
               </p>
             </div>
@@ -236,11 +236,11 @@ export default function GeneratorPage() {
 
           {loading && (
             <div
-              className="h-64 flex flex-col items-center justify-center rounded-xl border"
-              style={{ border: '1px solid #2a2520', background: '#1a1814' }}
+              className="h-64 flex flex-col items-center justify-center rounded-2xl border"
+              style={{ border: '1.5px solid #e8d9c4', background: '#fffdf7' }}
             >
-              <Loader2 size={32} style={{ color: '#c9b89a' }} className="animate-spin mb-3" />
-              <p className="label-mono" style={{ color: '#665e52' }}>
+              <Loader2 size={32} style={{ color: '#e8732a' }} className="animate-spin mb-3" />
+              <p className="label-mono" style={{ color: '#b8956a' }}>
                 Generando contenido...
               </p>
             </div>
@@ -249,18 +249,18 @@ export default function GeneratorPage() {
           {results && (
             <div>
               {/* Tabs */}
-              <div className="flex gap-0 mb-6 rounded-lg overflow-hidden border" style={{ border: '1px solid #2a2520' }}>
+              <div className="flex gap-0 mb-6 rounded-xl overflow-hidden border" style={{ border: '1.5px solid #e8d9c4' }}>
                 {networks.map(nid => {
                   const net = NETWORKS.find(n => n.id === nid)
                   return (
                     <button
                       key={nid}
                       onClick={() => setActiveTab(nid)}
-                      className="flex-1 py-2.5 text-xs font-medium transition-all duration-150"
+                      className="flex-1 py-2.5 text-xs font-semibold transition-all duration-150"
                       style={{
-                        background: activeTab === nid ? '#2a2520' : '#1a1814',
-                        color: activeTab === nid ? '#c9b89a' : '#443c32',
-                        borderRight: '1px solid #2a2520',
+                        background: activeTab === nid ? '#e8732a' : '#fffdf7',
+                        color: activeTab === nid ? '#fff' : '#7a5c3a',
+                        borderRight: '1.5px solid #e8d9c4',
                       }}
                     >
                       {net?.emoji} {net?.label}
@@ -272,7 +272,6 @@ export default function GeneratorPage() {
               {/* Active post */}
               {activeTab && results[activeTab] && (
                 <div className="card-dark">
-                  {/* Network header */}
                   <div className="flex items-center gap-3 mb-5">
                     <div className="flex-1">
                       <span className="label-mono">
@@ -280,12 +279,11 @@ export default function GeneratorPage() {
                         {NETWORKS.find(n => n.id === activeTab)?.label}
                       </span>
                     </div>
-                    <span className="label-mono text-[9px]" style={{ color: '#443c32' }}>
+                    <span className="label-mono text-[9px]" style={{ color: '#b8956a' }}>
                       {getDisplayText(activeTab).length} chars
                     </span>
                   </div>
 
-                  {/* Editable text */}
                   <textarea
                     className="input-gold resize-none mb-4"
                     style={{ minHeight: '180px' }}
@@ -293,31 +291,20 @@ export default function GeneratorPage() {
                     onChange={e => setEditedTexts(prev => ({ ...prev, [activeTab]: e.target.value }))}
                   />
 
-                  {/* Hashtags */}
                   {results[activeTab].hashtags.length > 0 && (
-                    <p className="text-sm mb-5" style={{ color: '#665e52', lineHeight: 1.8 }}>
+                    <p className="text-sm mb-5 font-medium" style={{ color: '#e8732a', lineHeight: 1.8 }}>
                       {results[activeTab].hashtags.map(h => `#${h}`).join(' ')}
                     </p>
                   )}
 
-                  {/* Actions */}
-                  <div className="flex gap-2 pt-4 border-t" style={{ borderColor: '#2a2520' }}>
-                    <button
-                      onClick={generate}
-                      className="btn-ghost flex items-center gap-1.5 text-xs"
-                    >
+                  <div className="flex gap-2 pt-4 border-t" style={{ borderColor: '#e8d9c4' }}>
+                    <button onClick={generate} className="btn-ghost flex items-center gap-1.5 text-xs">
                       <RotateCcw size={13} /> Regenerar
                     </button>
-                    <button
-                      onClick={() => goToEditor(activeTab)}
-                      className="btn-ghost flex items-center gap-1.5 text-xs"
-                    >
+                    <button onClick={() => goToEditor(activeTab)} className="btn-ghost flex items-center gap-1.5 text-xs">
                       <Download size={13} /> Editor visual
                     </button>
-                    <button
-                      onClick={() => copyText(activeTab)}
-                      className="btn-gold flex items-center gap-1.5 text-xs ml-auto"
-                    >
+                    <button onClick={() => copyText(activeTab)} className="btn-gold flex items-center gap-1.5 text-xs ml-auto">
                       {copied === activeTab
                         ? <><Check size={13} /> Copiado!</>
                         : <><Copy size={13} /> Copiar</>

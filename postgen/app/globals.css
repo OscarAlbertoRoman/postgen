@@ -1,70 +1,88 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --ink-950: #0a0907;
-  --ink-900: #0f0e0d;
-  --ink-800: #1a1814;
-  --ink-700: #2a2520;
-  --ink-600: #443c32;
-  --ink-500: #665e52;
-  --gold: #c9b89a;
-  --gold-light: #f0e8d8;
-  --gold-dark: #a09282;
-  --gold-muted: #665e52;
+  --cream:      #fef9f0;
+  --cream-dark: #f5ede0;
+  --cream-card: #fffdf7;
+  --yellow:     #f5c842;
+  --yellow-dark:#e8b820;
+  --orange:     #e8732a;
+  --orange-dark:#d45f18;
+  --green:      #4a7c3f;
+  --green-light:#6aaa5a;
+  --brown:      #2d1f0e;
+  --brown-mid:  #7a5c3a;
+  --brown-light:#b8956a;
+  --border:     #e8d9c4;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
-  background: var(--ink-950);
-  color: var(--gold-light);
-  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: 'Plus Jakarta Sans', sans-serif;
   min-height: 100vh;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--ink-900); }
-::-webkit-scrollbar-thumb { background: var(--ink-700); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--ink-600); }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brown-light); }
 
-/* Selection */
-::selection { background: var(--gold); color: var(--ink-950); }
+::selection { background: var(--yellow); color: var(--brown); }
 
 @layer components {
   .input-gold {
-    @apply w-full bg-ink-800 border border-ink-700 text-gold placeholder-ink-600 
-           px-4 py-3 rounded-lg font-sans text-sm outline-none
-           focus:border-gold-dark transition-colors duration-200;
+    @apply w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200;
+    background: var(--cream-card);
+    border: 1.5px solid var(--border);
+    color: var(--brown);
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
+  .input-gold::placeholder { color: var(--brown-light); }
+  .input-gold:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232,115,42,0.12); }
 
   .btn-gold {
-    @apply bg-gold text-ink-950 font-semibold px-6 py-3 rounded-lg
-           hover:bg-gold-light transition-colors duration-200 cursor-pointer
-           font-sans text-sm tracking-wide;
+    @apply rounded-xl font-semibold px-6 py-3 transition-all duration-200 cursor-pointer text-sm;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
+  .btn-gold:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(232,115,42,0.35); }
 
   .btn-ghost {
-    @apply border border-ink-700 text-gold-muted px-4 py-2 rounded-lg
-           hover:border-gold-dark hover:text-gold transition-colors duration-200
-           cursor-pointer font-sans text-sm;
+    @apply rounded-xl px-4 py-2 text-sm transition-all duration-200 cursor-pointer;
+    border: 1.5px solid var(--border);
+    color: var(--brown-mid);
+    background: transparent;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
+  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); background: rgba(232,115,42,0.05); }
 
   .card-dark {
-    @apply bg-ink-800 border border-ink-700 rounded-xl p-6;
+    @apply rounded-2xl p-6;
+    background: var(--cream-card);
+    border: 1.5px solid var(--border);
+    box-shadow: 0 2px 12px rgba(45,31,14,0.06);
   }
 
   .label-mono {
-    @apply font-mono text-[10px] tracking-[0.2em] uppercase text-gold-muted;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brown-light);
   }
 
   .section-title {
-    @apply font-serif text-3xl text-gold-light;
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--brown);
   }
 }
+

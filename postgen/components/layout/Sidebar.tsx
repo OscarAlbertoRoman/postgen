@@ -19,53 +19,65 @@ export default function Sidebar() {
       {/* DESKTOP SIDEBAR */}
       <aside
         className="hidden md:flex w-56 flex-col border-r shrink-0"
-        style={{ background: '#0f0e0d', borderColor: '#2a2520' }}
+        style={{ background: '#fffdf7', borderColor: '#e8d9c4' }}
       >
-        <div className="px-6 py-6 border-b" style={{ borderColor: '#2a2520' }}>
-          <span className="label-mono block mb-1">Herramienta</span>
-          <h1 className="font-serif text-2xl" style={{ color: '#f0e8d8' }}>
+        <div className="px-6 py-6 border-b" style={{ borderColor: '#e8d9c4' }}>
+          <span className="label-mono block mb-2">Herramienta</span>
+          <h1 className="font-['Fraunces'] text-2xl font-bold" style={{ color: '#2d1f0e' }}>
             Post<em>Gen</em>
           </h1>
-          <span className="label-mono text-[9px]" style={{ color: '#443c32' }}>✦ con IA</span>
+          <span className="label-mono text-[9px]" style={{ color: '#b8956a' }}>✦ con IA</span>
         </div>
+
         <nav className="flex-1 px-3 py-4 space-y-1">
           {nav.map(({ href, icon: Icon, label }) => {
             const active = pathname === href
             return (
               <Link key={href} href={href}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200"
-                style={{ color: active ? '#c9b89a' : '#665e52', background: active ? '#2a2520' : 'transparent' }}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
+                style={{
+                  color: active ? '#e8732a' : '#7a5c3a',
+                  background: active ? 'rgba(232,115,42,0.1)' : 'transparent',
+                  borderLeft: active ? '3px solid #e8732a' : '3px solid transparent',
+                }}
               >
                 <Icon size={16} />{label}
               </Link>
             )
           })}
         </nav>
-        <div className="px-6 py-4 border-t" style={{ borderColor: '#2a2520' }}>
-          <p className="label-mono text-[9px]" style={{ color: '#443c32' }}>PostGen v0.1 — Beta</p>
+
+        <div className="px-6 py-4 border-t" style={{ borderColor: '#e8d9c4' }}>
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs"
+              style={{ background: '#f5c842', color: '#2d1f0e' }}>🌿</div>
+            <p className="label-mono text-[9px]" style={{ color: '#b8956a' }}>PostGen v0.1 — Beta</p>
+          </div>
         </div>
       </aside>
 
       {/* MOBILE TOP BAR */}
       <div
         className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 border-b"
-        style={{ background: '#0f0e0d', borderColor: '#2a2520' }}
+        style={{ background: '#fffdf7', borderColor: '#e8d9c4' }}
       >
-        <h1 className="font-serif text-xl" style={{ color: '#f0e8d8' }}>Post<em>Gen</em></h1>
-        <span className="label-mono text-[9px]" style={{ color: '#443c32' }}>✦ con IA</span>
+        <h1 className="text-xl font-bold" style={{ fontFamily: 'Fraunces, serif', color: '#2d1f0e' }}>
+          Post<em>Gen</em>
+        </h1>
+        <span className="label-mono text-[9px]" style={{ color: '#b8956a' }}>✦ con IA</span>
       </div>
 
       {/* MOBILE BOTTOM NAV */}
       <nav
         className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex border-t"
-        style={{ background: '#0f0e0d', borderColor: '#2a2520' }}
+        style={{ background: '#fffdf7', borderColor: '#e8d9c4' }}
       >
         {nav.map(({ href, icon: Icon, label }) => {
           const active = pathname === href
           return (
             <Link key={href} href={href}
-              className="flex-1 flex flex-col items-center gap-1 py-3 text-[10px] font-medium transition-all"
-              style={{ color: active ? '#c9b89a' : '#443c32' }}
+              className="flex-1 flex flex-col items-center gap-1 py-3 text-[10px] font-semibold transition-all"
+              style={{ color: active ? '#e8732a' : '#b8956a' }}
             >
               <Icon size={18} />{label}
             </Link>

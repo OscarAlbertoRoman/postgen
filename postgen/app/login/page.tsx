@@ -33,22 +33,20 @@ export default function LoginPage() {
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4"
-      style={{ background: '#0a0907' }}
+      style={{ background: '#fef9f0' }}
     >
       <div className="w-full max-w-sm">
-        {/* Logo */}
         <div className="text-center mb-10">
-          <span className="label-mono block mb-3" style={{ color: '#443c32' }}>Acceso privado</span>
-          <h1 className="font-serif text-5xl mb-2" style={{ color: '#f0e8d8' }}>
-            Post<em>Gen</em>
+          <span className="label-mono block mb-3">Acceso privado</span>
+          <h1 className="text-5xl mb-2 font-bold" style={{ fontFamily: 'Fraunces, serif', color: '#2d1f0e' }}>
+            Post<em style={{ color: '#e8732a' }}>Gen</em>
           </h1>
-          <span className="label-mono text-[10px]" style={{ color: '#443c32' }}>✦ con IA</span>
+          <span className="label-mono text-[10px]">✦ con IA</span>
         </div>
 
-        {/* Card */}
         <div className="card-dark">
           <div className="flex items-center gap-2 mb-6">
-            <Lock size={14} style={{ color: '#665e52' }} />
+            <Lock size={14} style={{ color: '#b8956a' }} />
             <span className="label-mono">Contraseña</span>
           </div>
 
@@ -63,7 +61,7 @@ export default function LoginPage() {
           />
 
           {error && (
-            <p className="text-xs mb-4 text-center" style={{ color: '#c9b89a', opacity: 0.7 }}>
+            <p className="text-xs mb-4 text-center" style={{ color: '#e8732a' }}>
               Contraseña incorrecta. Intentá de nuevo.
             </p>
           )}
@@ -73,7 +71,7 @@ export default function LoginPage() {
             disabled={loading || !password}
             className="w-full btn-gold flex items-center justify-center gap-2 py-3 disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {loading ? <><Loader2 size={15} className="animate-spin" /> Verificando...</> : 'Ingresar'}
+            {loading ? <><Loader2 size={15} className="animate-spin" /> Verificando...</> : 'Ingresar 🌿'}
           </button>
         </div>
       </div>
