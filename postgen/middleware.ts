@@ -1,23 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export function middleware(req: NextRequest) {
-  const basicAuth = req.headers.get('authorization')
+  const { pathname } = req.nextUrl
 
-  if (basicAuth) {
-    const authValue = basicAuth.split(' ')[1]
-    const [user, password] = atob(authValue).split(':')
-
-    if (password === process.env.APP_PASSWORD) {
-      return NextResponse.next()
-    }
+  // Allow login page and API login route always
+  if (pathname === '/login' || pathname === '/api/login') {
+    return NextResponse.next()
   }
 
-  return new NextResponse('Acceso restringido', {
-    status: 401,
-    headers: {
-      'WWW-Authenticate': 'Basic realm="PostGen — Acceso Privado"',
-    },
-  })
+  // Check auth cookie
+  const auth = req.cookies.get('postgen_auth')
+  if (auth?.value === process.env.APP_PASSWORD) {
+    return NextResponse.next()
+  }
+
+  // Redirect to login
+  const loginUrl = req.nextUrl.clone()
+  loginUrl.pathname = '/login'
+  return NextResponse.redirect(loginUrl)
 }
 
 export const config = {
